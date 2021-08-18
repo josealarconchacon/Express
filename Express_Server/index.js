@@ -4,7 +4,7 @@ const app = express();
 
 // run app.use every time there is an incoming request
 app.use(() => { 
-    console.log("New Request");
+    console.log("New Request!!!!!");
 })
 
 app.listen(3000, () => {
