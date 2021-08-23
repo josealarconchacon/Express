@@ -40,15 +40,32 @@ mongoose.connect('mongodb://localhost:27017/shopApp', {useNewUrlParser: true, us
             enum: ['S','M','L','XL']
         }
     })
+    
+    productSchema.method.greet = function() {
+        console.log('HELLO..');
+        console.log(`- from ${this.name}`);
+    }
 
+    // Model Instance Methods
     const Product = mongoose.model('Product', productSchema);
-    const newJeans = new Product({name: 'Sport Short', price: 50, onSale: false, categories: ['Recycling', 'Blue thread'], size: 'S' })
-    newJeans.save()
 
+    const findProduct = async () => { // find a product
+        const foundProduct = await Product.findOne({name: 't-shirt'})
+        foundProduct.greet();
+    }
+
+    findProduct();
+
+
+
+
+    // const Product = mongoose.model('Product', productSchema);
+    // const newJeans = new Product({name: 'Sport Short', price: 50, onSale: false, categories: ['Recycling', 'Blue thread'], size: 'S' })
+    // newJeans.save()
     // Product.findOneAndUpdate({name: 'Black Jeans'}, {price}, {new: true})
-    .then(data => {
-        console.log('IT WORKS!!!', data);
-    })
-    .catch(error => {
-        console.log('Error', error);
-    })
+    // .then(data => {
+    //     console.log('IT WORKS!!!', data);
+    // })
+    // .catch(error => {
+    //     console.log('Error', error);
+    // })
