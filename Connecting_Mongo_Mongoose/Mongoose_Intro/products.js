@@ -18,7 +18,8 @@ mongoose.connect('mongodb://localhost:27017/shopApp', {useNewUrlParser: true, us
         },
         price: { 
             type: Number,
-            required: true
+            required: true,
+            min: [0, 'Price most be positive number']
         },
         onSale: { // optional
             type: Boolean
@@ -33,12 +34,18 @@ mongoose.connect('mongodb://localhost:27017/shopApp', {useNewUrlParser: true, us
                 type: Number,
                 default: 0
             }
+        },
+        size: {
+            type: String,
+            enum: ['S','M','L','XL']
         }
     })
 
     const Product = mongoose.model('Product', productSchema);
-    const newJeans = new Product({name: 'Black Jeans', price: 100, onSale: false, categories: ['Recycling', 'Black thread'] })
+    const newJeans = new Product({name: 'Sport Short', price: 50, onSale: false, categories: ['Recycling', 'Blue thread'], size: 'S' })
     newJeans.save()
+
+    // Product.findOneAndUpdate({name: 'Black Jeans'}, {price}, {new: true})
     .then(data => {
         console.log('IT WORKS!!!', data);
     })
