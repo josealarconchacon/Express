@@ -18,4 +18,12 @@ mongoose.connect('mongodb://localhost:27017/person', {useNewUrlParser: true, use
         return `${this.first} ${this.last}`
     })
 
+    personSchema.pre('save', async function() {
+        console.log('About to Save')
+    })
+
+    personSchema.post('save', async function() {
+        console.log('Save')
+    })
+
     const Person = mongoose.model('Person', personSchema);
