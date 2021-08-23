@@ -24,16 +24,16 @@ mongoose.connect('mongodb://localhost:27017/carApp', {useNewUrlParser: true, use
     // new instance and save to mongodb
     // const f_car = new Car({make: 'Honda', model: 'R', color: 'Yellow', year: 2009, price: 13000, mile: 540000})
 
-    Car.insertMany([
-        {make: 'Honda', model: 'Civic', color: 'Blue', year: 2019, price: 13000, mile: 240000},
-        {make: 'Nisan', model: 'GT-R', color: 'With', year: 2020, price: 113540, mile: 100},
-        {make: 'Lucid', model: 'Air', color: 'Black', year: 2022, price: 70000, mile: 0},
-        {make: 'Toyota', model: 'Corolla', color: 'Blue', year: 2019, price: 12000, mile: 440000},
-        {make: 'Honda', model: 'Accord', color: 'Red', year: 2022, price: 22000, mile: 0}
-    ])
-    .then(data => {
-        console.log('Showing data', data)
-    })
-    .catch(error => {
-        console.log('Error: ',error)
-    })
+    // Car.insertMany([
+    //     {make: 'Honda', model: 'Civic', color: 'Blue', year: 2019, price: 13000, mile: 240000},
+    //     {make: 'Nisan', model: 'GT-R', color: 'With', year: 2020, price: 113540, mile: 100},
+    //     {make: 'Lucid', model: 'Air', color: 'Black', year: 2022, price: 70000, mile: 0},
+    //     {make: 'Toyota', model: 'Corolla', color: 'Blue', year: 2019, price: 12000, mile: 440000},
+    //     {make: 'Honda', model: 'Accord', color: 'Red', year: 2022, price: 22000, mile: 0}
+    // ])
+    // .then(data => {
+    //     console.log('Showing data', data)
+    // })
+    // .catch(error => {
+    //     console.log('Error: ',error)
+    // })
