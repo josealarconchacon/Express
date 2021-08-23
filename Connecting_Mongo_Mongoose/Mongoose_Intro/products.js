@@ -45,16 +45,32 @@ mongoose.connect('mongodb://localhost:27017/shopApp', {useNewUrlParser: true, us
         console.log('HELLO..');
         console.log(`- from ${this.name}`);
     }
+    productSchema.method.addCategory = function(newP) {
+        this.addCategory.push(newP);
+        return this.save();
+    }
+
+
+    // Static Methods
+    productSchema.static.fireSale = function() {
+        this.updateMany({}, {onSale: true, price:0})
+    }
 
     // Model Instance Methods
     const Product = mongoose.model('Product', productSchema);
 
     const findProduct = async () => { // find a product
         const foundProduct = await Product.findOne({name: 't-shirt'})
-        foundProduct.greet();
+        console.log(foundProduct);
+        await foundProduct.toggleOnSale();
+        console.log(foundProduct);
+        await foundProduct.toggleOnSale('Outdoors');
+        console.log(foundProduct);
     }
 
-    findProduct();
+    Product.fireSale().then(d => console.log(d));
+
+    // findProduct();
 
 
 
