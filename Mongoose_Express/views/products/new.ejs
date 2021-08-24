@@ -17,9 +17,10 @@
             <select name="category" id="category">
                 <!-- <option value="fruit">Fruit</option>
                 <option value="vegetable">Vegetable</option> -->
-                <% categories.forEach(category => { %>
-                    <option value="<%= category %> "><%= category %></option>
-                <% }) %>
+
+                <% for(let category of categories)  {%>
+                    <option value="<%=category%>"><%=category%></option>
+                <%}%> 
             </select>
             <button>App Product</button>
         </form>
