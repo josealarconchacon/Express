@@ -9,7 +9,8 @@
         <h1><%= foundProductById.name  %></h1>
         <ul>
             <li>Price: <%= foundProductById.price %> </li>
-            <li>Category: <%= foundProductById.category %> </li>
+            <!-- filtering by category -->
+            <li>Category:<a href="/products?category=<%= foundProductById.category %>"><%= foundProductById.category %></a> </li>
         </ul>
         <a href="/products">Back To All Products</a>
         <a href="/products/<%= foundProductById._id %>/update ">Update Products</a>
