@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
+
 
 const Product = require('./models/product');
 
@@ -17,7 +19,9 @@ mongoose.connect('mongodb://localhost:27017/farmStand', {useNewUrlParser: true, 
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 app.use(express.urlencoded({extended: true}))
+app.use(methodOverride('_method'))
 
 // route
 app.get('/products', async (req, res) => {
@@ -45,6 +49,20 @@ app.get('/products/:id', async (req, res) => {
     const foundProductById =  await Product.findById(id)
     // console.log(foundProductById)
     res.render('products/detail', { foundProductById })
+})
+
+// route to go to update product in form
+app.get('/products/:id/update', async (req, res) => {
+    const { id } = req.params;
+    // find product by id
+    const productId =  await Product.findById(id);
+    res.render('products/update', { productId })
+})
+// update product
+app.put('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const product =  await Product.findByIdAndUpdate(id, req.body, {runValidators: true, new: true})
+    res.redirect(`/products/${product._id}`)
 })
 
 mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true})
