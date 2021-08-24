@@ -27,10 +27,16 @@ const categories = ['fruit', 'vegetable'];
 
 // route
 app.get('/products', async (req, res) => {
-    // get all products
-    const products = await Product.find({})
-    console.log(products);
-    res.render('products/index', { products })
+    // query
+    const { category } = req.query;
+    if(category) {
+        const products = await Product.find({ category })
+        res.render('products/index', { products,  category})
+    } else {
+           // get all products
+        const products = await Product.find({})
+        res.render('products/index', { products, category: 'All' })
+    }
 })
 
 app.get('/products/new', (req, res) => {
