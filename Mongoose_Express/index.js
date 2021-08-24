@@ -23,6 +23,8 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
 
+const categories = ['fruit', 'vegetable']
+
 // route
 app.get('/products', async (req, res) => {
     // get all products
@@ -32,7 +34,7 @@ app.get('/products', async (req, res) => {
 })
 
 app.get('/products/new', (req, res) => {
-    res.render('products/new')
+    res.render('products/new', { categories })
 })
 // form to submit product
 app.post('/products', async (req, res) => {
@@ -56,7 +58,7 @@ app.get('/products/:id/update', async (req, res) => {
     const { id } = req.params;
     // find product by id
     const productId =  await Product.findById(id);
-    res.render('products/update', { productId })
+    res.render('products/update', { productId, categories })
 })
 // update product
 app.put('/products/:id', async (req, res) => {
