@@ -6,6 +6,15 @@ const app = express();
 // tell the express to use morgan
 app.use(morgan('tiny'))
 
+app.use((req, res, next) => { // defining Middleware
+    console.log('First mIDDLEWARE');
+    return next(); // callBack
+});
+app.use((req, res, next) => {
+    console.log('Second mIDDLEWARE');
+    return next(); // callBack
+});
+
 app.get('/', (req, res) => {
     res.send('Welcome To The Home Page')
 });
