@@ -19,7 +19,7 @@ app.use('/dogs', (req, res, next) => {
 
 const verifyPassword = (req, res, next) => {
     const { password } = req.query;
-    if (password === 'chickennugget') {
+    if (password === 'myDog') {
         next();
     }
     throw new AppError('password required', 401);
