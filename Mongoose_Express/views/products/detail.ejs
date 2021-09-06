@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title><%= foundProductById.name  %> </title>
+    </head>
+    <body>
+        <h1><%= foundProductById.name  %></h1>
+        <ul>
+            <li>Price: <%= foundProductById.price %> </li>
+            <!-- filtering by category -->
+            <li>Category:<a href="/products?category=<%= foundProductById.category %>"><%= foundProductById.category %></a> </li>
+        </ul>
+        <a href="/products">Back To All Products</a>
+        <a href="/products/<%= foundProductById._id %>/update ">Update Products</a>
+        <form action="/products/<%= foundProductById._id %>?_method=DELETE" method="POST">
+            <button>Delete</button>
+        </form>
+    </body>
+</html>
